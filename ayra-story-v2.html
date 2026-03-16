@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AYRA — Her Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,200;0,300;0,400;0,500;1,300;1,400&family=Nunito+Sans:wght@200;300;400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FDF8F4;
+    --beige: #F7F0EA;
+    --beige-mid: #EFE5DA;
+    --blush: #F2D4CC;
+    --pink: #E8A89C;
+    --pink-deep: #D4857A;
+    --dark: #2C2420;
+    --muted: #8A7570;
+    --light: #C4B0AA;
+    --white: #FFFCFA;
+    --border: #EDE0D8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(253,248,244,0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 500; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--dark);
+  }
+  .nav-cta {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--white);
+    background: var(--pink-deep); padding: 12px 28px;
+    text-decoration: none; transition: background 0.3s;
+    border-radius: 0;
+  }
+  .nav-cta:hover { background: var(--pink); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 64px 80px 80px;
+    background: var(--beige);
+    position: relative; z-index: 2;
+  }
+  .hero-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--pink-deep);
+    margin-bottom: 28px;
+    display: flex; align-items: center; gap: 12px;
+    opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+  .hero-tag::before { content: ''; width: 28px; height: 1px; background: var(--pink); }
+  .hero h1 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(40px, 4.5vw, 68px);
+    font-weight: 200; line-height: 1.1;
+    color: var(--dark); margin-bottom: 28px;
+    letter-spacing: -0.02em;
+    opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--pink-deep);
+    font-weight: 300;
+  }
+  .hero-desc {
+    font-size: 16px; font-weight: 300; line-height: 1.9;
+    color: var(--muted); max-width: 420px; margin-bottom: 48px;
+    opacity: 0; animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+  .hero-scroll {
+    display: flex; align-items: center; gap: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--light);
+    cursor: pointer;
+    opacity: 0; animation: fadeUp 0.8s ease 0.8s forwards;
+  }
+  .hero-scroll-line {
+    width: 40px; height: 1px;
+    background: linear-gradient(to right, var(--pink), transparent);
+  }
+  .hero-right {
+    position: relative; overflow: hidden;
+    background: var(--beige-mid);
+  }
+  .hero-image-placeholder {
+    width: 100%; height: 100%; min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 12px;
+    background: linear-gradient(160deg, var(--blush), var(--beige-mid));
+  }
+  .hero-image-placeholder span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 300; font-style: italic;
+    color: rgba(44,36,32,0.3); letter-spacing: 0.06em;
+  }
+  .hero-image-note {
+    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(44,36,32,0.2);
+  }
+
+  /* SECTIONS */
+  section { padding: 100px 80px; }
+  .container { max-width: 900px; margin: 0 auto; }
+
+  .label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--pink-deep);
+    margin-bottom: 32px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .label::after { content: ''; width: 32px; height: 1px; background: var(--pink); }
+
+  /* STORY */
+  .story { background: var(--white); }
+  .story h2 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 200; line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--dark); margin-bottom: 48px;
+    max-width: 680px;
+  }
+  .story h2 em { font-style: italic; color: var(--pink-deep); font-weight: 300; }
+  .story-cols {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+  .story-text p {
+    font-size: 15px; font-weight: 300; line-height: 2;
+    color: var(--muted); margin-bottom: 20px;
+  }
+  .story-text p strong { font-weight: 600; color: var(--dark); }
+  .story-highlights {
+    display: flex; flex-direction: column; gap: 2px;
+    margin-top: 8px;
+  }
+  .highlight-item {
+    background: var(--beige);
+    padding: 20px 24px;
+    display: flex; align-items: flex-start; gap: 16px;
+  }
+  .highlight-icon {
+    font-size: 18px; flex-shrink: 0; margin-top: 2px;
+  }
+  .highlight-text {
+    font-size: 14px; font-weight: 300; line-height: 1.7;
+    color: var(--dark);
+  }
+  .highlight-text strong { font-weight: 600; }
+
+  /* WHY AYRA */
+  .why { background: var(--beige); }
+  .why-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+  .why h2 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(30px, 3.5vw, 48px);
+    font-weight: 200; line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--dark); margin-bottom: 28px;
+  }
+  .why h2 em { font-style: italic; color: var(--pink-deep); font-weight: 300; }
+  .why p {
+    font-size: 15px; font-weight: 300; line-height: 2;
+    color: var(--muted); margin-bottom: 20px;
+  }
+  .why p strong { font-weight: 600; color: var(--dark); }
+  .why-quote {
+    background: var(--white);
+    border-left: 3px solid var(--pink);
+    padding: 28px 32px;
+    margin-top: 36px;
+  }
+  .why-quote-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 17px; font-weight: 300; font-style: italic;
+    color: var(--dark); line-height: 1.7;
+  }
+  .why-visual {
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .why-stat {
+    background: var(--white);
+    padding: 28px 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .why-stat:last-child { border-bottom: none; }
+  .why-stat-from {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--light);
+    margin-bottom: 6px;
+  }
+  .why-stat-to {
+    font-size: 15px; font-weight: 300; color: var(--dark);
+    line-height: 1.5;
+  }
+  .why-stat-arrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--pink-deep);
+    margin: 4px 0;
+  }
+
+  /* MEANING */
+  .meaning { background: var(--white); text-align: center; }
+  .meaning .label { justify-content: center; }
+  .meaning .label::after { display: none; }
+  .meaning .label::before { content: ''; width: 32px; height: 1px; background: var(--pink); }
+  .meaning h2 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 200; line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+  .meaning h2 em { font-style: italic; color: var(--pink-deep); font-weight: 300; }
+  .meaning p {
+    font-size: 15px; font-weight: 300; line-height: 2;
+    color: var(--muted); max-width: 580px;
+    margin: 0 auto 20px;
+  }
+  .meaning-name {
+    margin: 56px auto;
+    max-width: 560px;
+    padding: 48px;
+    background: var(--beige);
+    border: 1px solid var(--border);
+    position: relative;
+  }
+  .meaning-name::before {
+    content: 'AYRA';
+    position: absolute; top: -14px; left: 50%;
+    transform: translateX(-50%);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--pink-deep);
+    background: var(--beige); padding: 0 16px;
+  }
+  .meaning-name-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 20px; font-weight: 200; font-style: italic;
+    color: var(--dark); line-height: 1.6;
+    letter-spacing: 0.01em;
+  }
+  .meaning-name-sub {
+    font-size: 12px; font-weight: 300; letter-spacing: 0.1em;
+    color: var(--light); margin-top: 12px;
+    text-transform: uppercase;
+  }
+
+  /* FEATURES */
+  .features { background: var(--beige); }
+  .features h2 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(30px, 3.5vw, 48px);
+    font-weight: 200; line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .features h2 em { font-style: italic; color: var(--pink-deep); font-weight: 300; }
+  .features-intro {
+    font-size: 15px; font-weight: 300; line-height: 1.9;
+    color: var(--muted); max-width: 500px; margin-bottom: 56px;
+  }
+  .features-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .feature-item {
+    background: var(--white);
+    padding: 36px 28px;
+    transition: transform 0.3s;
+  }
+  .feature-item:hover { transform: translateY(-3px); }
+  .feature-icon { font-size: 24px; margin-bottom: 16px; }
+  .feature-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 500; letter-spacing: 0.04em;
+    color: var(--dark); margin-bottom: 10px;
+  }
+  .feature-desc {
+    font-size: 13px; font-weight: 300; line-height: 1.8;
+    color: var(--muted);
+  }
+
+  /* WAITLIST */
+  .waitlist {
+    background: var(--blush);
+    text-align: center;
+    padding: 120px 48px;
+    position: relative; overflow: hidden;
+  }
+  .waitlist::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--pink), transparent);
+  }
+  .waitlist h2 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(32px, 4.5vw, 60px);
+    font-weight: 200; line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--dark); margin-bottom: 16px;
+  }
+  .waitlist h2 em { font-style: italic; color: var(--pink-deep); font-weight: 300; }
+  .waitlist-sub {
+    font-size: 15px; font-weight: 300; line-height: 1.8;
+    color: var(--muted); max-width: 440px;
+    margin: 0 auto 12px;
+  }
+  .waitlist-launch {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.24em;
+    text-transform: uppercase; color: var(--pink-deep);
+    margin-bottom: 48px;
+  }
+  .waitlist-form {
+    max-width: 400px; margin: 0 auto;
+  }
+  .waitlist-form-box {
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 40px 36px;
+  }
+  .form-input {
+    width: 100%; padding: 15px 18px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px; font-weight: 300;
+    color: var(--dark);
+    background: var(--cream);
+    border: 1px solid var(--border);
+    outline: none; margin-bottom: 10px;
+    transition: border-color 0.3s;
+    -webkit-appearance: none; border-radius: 0;
+  }
+  .form-input::placeholder { color: var(--light); }
+  .form-input:focus { border-color: var(--pink); }
+  .form-btn {
+    width: 100%; padding: 17px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--white); background: var(--pink-deep);
+    border: none; cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin-top: 4px;
+  }
+  .form-btn:hover { background: var(--pink); transform: translateY(-1px); }
+  .form-note {
+    font-size: 11px; font-weight: 300;
+    color: var(--light); margin-top: 14px;
+  }
+  .form-success { display: none; padding: 16px 0; }
+  .form-success.show { display: block; }
+  .form-success h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 24px; font-weight: 300; font-style: italic;
+    color: var(--dark); margin-bottom: 10px;
+  }
+  .form-success p {
+    font-size: 14px; font-weight: 300;
+    color: var(--muted); line-height: 1.7;
+  }
+  .form-fields.hide { display: none; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    padding: 28px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-logo {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.28em;
+    text-transform: uppercase; color: rgba(253,248,244,0.3);
+  }
+  .footer-links { display: flex; gap: 28px; }
+  .footer-links a {
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(253,248,244,0.25); text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--pink); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.15s; }
+  .reveal-delay-2 { transition-delay: 0.3s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 18px 24px; }
+    section { padding: 72px 24px; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 100px 24px 48px; }
+    .hero-right { height: 70vw; min-height: auto; }
+    .hero-image-placeholder { min-height: 70vw; }
+    .story-cols, .why-inner { grid-template-columns: 1fr; gap: 40px; }
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+  }
+  @media (max-width: 600px) {
+    .features-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">AYRA</div>
+  <a href="#waitlist" class="nav-cta">Join the Waitlist</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">The story behind AYRA</div>
+    <h1>Built from<br>the inside <em>out</em>.</h1>
+    <p class="hero-desc">AYRA exists because one woman decided to stop waiting for life to get better — and started doing the work to make it that way. This is her story.</p>
+    <div class="hero-scroll" onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">
+      <div class="hero-scroll-line"></div>
+      <span>Keep reading</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="khiana-hero.png" alt="Khiana Smith" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="container">
+    <div class="label reveal">Khiana's story</div>
+    <h2 class="reveal">She grew up feeling like she <em>wasn't enough</em>.</h2>
+    <div class="story-cols">
+      <div class="story-text reveal">
+        <p>Khiana grew up in a home shaped by addiction and instability. Her father was an alcoholic — and the painful truth she had to come to terms with was that he chose the bottle over her. Again and again. That kind of rejection doesn't just hurt. It settles into you. It becomes the quiet voice that tells you you're not worth choosing.</p>
+        <p>Her mother battled severe mental health struggles — and Khiana spent much of her childhood being strong when she should have been allowed to just be a kid. There was no stable foundation, no one modelling what it looked like to feel okay, to feel confident, to feel safe in yourself.</p>
+        <p>So she grew up without those things. <strong>No confidence. No self-worth. Crippling anxiety.</strong> She couldn't go to the gym alone. She couldn't walk through a shopping centre without pretending to be on the phone — just to feel less exposed.</p>
+        <p>She built a business in Canberra. She worked hard. And she was good at it. But underneath all of it, she always knew — <strong>there is more for me than this.</strong> She just had no idea how to get there.</p>
+        <p>Then one day she set a date and moved to the Gold Coast with no plan, no safety net, and nothing but that knowing. <strong>That was the moment everything began to change.</strong></p>
+      </div>
+      <div class="story-highlights reveal reveal-delay-1">
+        <div class="highlight-item">
+          <div class="highlight-icon">✈️</div>
+          <div class="highlight-text">Went from <strong>too anxious to go to the mall alone</strong> to booking a solo month-long trip to Bali</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">📱</div>
+          <div class="highlight-text">Grew to <strong>20,000 Instagram followers</strong> in months and landed her dream brand deals</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">💛</div>
+          <div class="highlight-text">Built an <strong>online coaching business</strong> helping women transform their lives from the inside out</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">🌟</div>
+          <div class="highlight-text">Created <strong>financial freedom</strong> doing work that lights her up every single day</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY AYRA -->
+<section class="why">
+  <div class="container">
+    <div class="why-inner">
+      <div class="reveal">
+        <div class="label">How she changed</div>
+        <h2>The tools that <em>rewrote</em> everything.</h2>
+        <p>When Khiana moved to the Gold Coast, she didn't just change her postcode. She committed to doing the real work — the inner work that nobody had ever taught her, because nobody around her had done it either.</p>
+        <p>She started journaling. Getting the noise out of her head and onto the page. For the first time, she could see her thoughts clearly — the patterns, the fears, the stories she'd been telling herself since childhood. <strong>And once she could see them, she could start to change them.</strong></p>
+        <p>She started setting goals. Not vague wishes — real visions. She learned that manifestation isn't magic, it's focus. It's deciding what you want and taking aligned action every single day. The confidence she'd been chasing her whole life? It didn't come from a person or a place. <strong>It came from keeping promises to herself.</strong></p>
+        <p>She used affirmations every morning to rewire the narrative — replacing "I'm not enough" with something she actually believed she could become. She tracked her moods, her habits, her wins. She listened to audios that helped her start the day with intention instead of anxiety.</p>
+        <p>Slowly, then all at once — <strong>she became someone she was proud of.</strong> Not because her circumstances were perfect. But because she did the inside work and let it change everything else.</p>
+        <div class="why-quote">
+          <div class="why-quote-text">"I am living proof that you can build a life you love coming from nothing. These tools didn't just help me — they changed the entire trajectory of my life."</div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <div class="why-stat">
+          <div class="why-stat-from">Journaling</div>
+          <div class="why-stat-to">Helped her understand her own patterns, process her past, and get out of her head</div>
+          <div class="why-stat-arrow">↓</div>
+          <div class="why-stat-to" style="color: var(--pink-deep); font-weight: 400;">Clarity, self-awareness, peace of mind</div>
+        </div>
+        <div class="why-stat">
+          <div class="why-stat-from">Daily mantras + goal setting</div>
+          <div class="why-stat-to">Replaced years of negative self-talk with a new identity she chose for herself</div>
+          <div class="why-stat-arrow">↓</div>
+          <div class="why-stat-to" style="color: var(--pink-deep); font-weight: 400;">Unshakeable confidence, 20k followers, dream brand deals</div>
+        </div>
+        <div class="why-stat">
+          <div class="why-stat-from">Tracking + audio rituals</div>
+          <div class="why-stat-to">Built structure, consistency and calm into every single day</div>
+          <div class="why-stat-arrow">↓</div>
+          <div class="why-stat-to" style="color: var(--pink-deep); font-weight: 400;">Solo Bali trip, financial freedom, a life she manifested</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEANING -->
+<section class="meaning">
+  <div class="container">
+    <div class="label reveal">The name</div>
+    <h2 class="reveal">What does <em>AYRA</em> mean?</h2>
+    <p class="reveal">The name was chosen with intention. AYRA is rooted in six different cultures, each one pointing to the same meaning — an honourable, respectable woman. Someone of worth. Someone to look up to.</p>
+    <p class="reveal">It was also inspired by the idea of a honey drop in gold. Something small, precious, and powerful.</p>
+    <div class="meaning-name reveal">
+      <div class="meaning-name-text">An honourable woman. A honey drop in gold.<br>A big sister. A safe place.</div>
+      <div class="meaning-name-sub">Rooted in 6 cultures · Built for every woman</div>
+    </div>
+    <p class="reveal">Not a project name. Not a brand name. A name with soul — because that's exactly what this app is built to help you find.</p>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="container">
+    <div class="label reveal">Inside the app</div>
+    <h2 class="reveal">Your daily tools for <em>whole-self growth</em>.</h2>
+    <p class="features-intro reveal">Everything Khiana used to change her own life — the habits, the rituals, the mindset tools — brought together in one beautiful, simple app.</p>
+    <div class="features-grid">
+      <div class="feature-item reveal">
+        <div class="feature-icon">🌅</div>
+        <div class="feature-title">Daily Mantras</div>
+        <div class="feature-desc">Personalised affirmations aligned with your goals. What you tell yourself every morning shapes everything that follows.</div>
+      </div>
+      <div class="feature-item reveal reveal-delay-1">
+        <div class="feature-icon">📓</div>
+        <div class="feature-title">Journaling</div>
+        <div class="feature-desc">Free-hand or guided prompts — get out of your head and onto the page. Track your growth and patterns over time.</div>
+      </div>
+      <div class="feature-item reveal reveal-delay-2">
+        <div class="feature-icon">📅</div>
+        <div class="feature-title">Mood & Action Tracker</div>
+        <div class="feature-desc">Track how you felt and what actions you took each day. Your calendar becomes a record of who you're becoming.</div>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-icon">🎯</div>
+        <div class="feature-title">Goal Setting</div>
+        <div class="feature-desc">Manifestation starts with a clear vision. Set your goals, work toward them, and watch life align with your intentions.</div>
+      </div>
+      <div class="feature-item reveal reveal-delay-1">
+        <div class="feature-icon">🎧</div>
+        <div class="feature-title">Audio Vault</div>
+        <div class="feature-desc">Big sister energy in audio form. Morning start, evening wind-down, anxiety reset, confidence boost — whenever you need it.</div>
+      </div>
+      <div class="feature-item reveal reveal-delay-2">
+        <div class="feature-icon">🤍</div>
+        <div class="feature-title">A Safe Place</div>
+        <div class="feature-desc">Not a fitness app. Not a productivity tracker. A place to come home to yourself — every single day.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section class="waitlist" id="waitlist">
+  <h2 class="reveal">She's almost <em>here</em>.</h2>
+  <p class="waitlist-sub reveal">AYRA launches in May 2026. Join the waitlist and be the first inside.</p>
+  <div class="waitlist-launch reveal">Launching May 2026</div>
+  <div class="waitlist-form reveal">
+    <div class="waitlist-form-box">
+      <div class="form-fields" id="formFields">
+        <form id="waitlistForm" action="https://gmail.us22.list-manage.com/subscribe/post?u=c47016713b8b62d5dc5ea865c&amp;id=2ca9178c36&amp;f_id=00a3c2e1f0" method="post" target="_blank">
+          <input type="text" name="FNAME" class="form-input" placeholder="Your first name">
+          <input type="email" name="EMAIL" class="form-input" placeholder="Your email address" required>
+          <div aria-hidden="true" style="position: absolute; left: -5000px;"><input type="text" name="b_c47016713b8b62d5dc5ea865c_2ca9178c36" tabindex="-1" value=""></div>
+          <input type="hidden" name="tags" value="AYRA Waitlist">
+          <button type="submit" class="form-btn"><span>Notify Me When AYRA Launches</span></button>
+        </form>
+        <div class="form-note">No spam. Just the launch announcement. Unsubscribe anytime.</div>
+      </div>
+      <div class="form-success" id="formSuccess">
+        <h3>You're on the list 🤍</h3>
+        <p>We'll reach out the moment AYRA is ready. She's coming — and she can't wait to meet you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">AYRA</div>
+  <div class="footer-links">
+    <a href="https://instagram.com/yourhandle">Instagram</a>
+    <a href="https://khianasmith.github.io/AYRA7days">7 Days to Her</a>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  const form = document.getElementById('waitlistForm');
+  const fields = document.getElementById('formFields');
+  const success = document.getElementById('formSuccess');
+  form.addEventListener('submit', function() {
+    setTimeout(function() {
+      fields.classList.add('hide');
+      success.classList.add('show');
+    }, 500);
+  });
+</script>
+
+</body>
+</html>
